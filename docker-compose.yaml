@@ -1,0 +1,56 @@
+version: "3"
+
+services:
+  pihole:
+    container_name: pihole
+    image: pihole/pihole:latest
+    networks:
+      pihole:
+        ipv4_address: 192.168.0.254 # Your Fixed IP for PiHole
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+      - "85:80/tcp"
+    environment:
+      TZ: 'Europe/Amsterdam' # Set your timezone here
+      WEBPASSWORD: 'Password#900' # Here you can set the webui password for admin
+    dns:
+      - 127.0.0.1
+      - 1.1.1.1
+    volumes:
+      - './etc-pihole:/etc/pihole'
+      - './etc-dnsmasq.d:/etc/dnsmasq.d'
+    restart: unless-stopped
+    privileged: true
+
+  unbound:
+    container_name: unbound
+    image: madnuttah/unbound:latest
+    hostname: unbound
+    networks:
+      pihole:
+        ipv4_address: 192.168.0.253 # Your Fixed IP for Unbound
+    ports:
+      - 5335:5335/tcp
+      - 5335:5335/udp
+    environment:
+      TZ: "Europe/Amsterdam"
+    volumes:
+      - ./unbound/unbound.conf:/usr/local/unbound/unbound.conf:rw #Your local path to Unbound
+      - ./unbound/conf.d/:/usr/local/unbound/conf.d/:rw
+      - ./unbound/log.d/:/usr/local/unbound/log.d/:rw
+      - ./unbound/zones.d/:/usr/local/unbound/zones.d/:rw
+    restart: unless-stopped
+
+networks:
+  pihole:
+    driver: qnet
+    driver_opts:
+      iface: "eth0"
+    ipam:
+      driver: qnet
+      options:
+        iface: "eth0"
+      config:
+        - subnet: 192.168.0.0/24 # Change to your subnet
+          gateway: 192.168.0.1 # Set your default gateway
