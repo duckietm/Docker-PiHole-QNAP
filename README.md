@@ -118,7 +118,7 @@ cd /docker/pihole
 docker-compose stop
 docker system prune -a
 ```
-Now press 'Y' to remove everting from the docker that is in stopped state, this will also remove the network for the created dockers.
+Now press 'Y' to remove everything from the docker that is in stopped state, this will also remove the network for the created dockers.
 
 then do
 ```cmd
