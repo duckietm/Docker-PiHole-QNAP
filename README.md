@@ -95,10 +95,13 @@ cd /docker/pihole
 docker-compose up -d
 ```
 
-Open your browser and go to http://#your fixed pihole ip#/admin
-Use your password (this was provided in the yml) and select settings in the right menu and select DNS
-in the Custom 1 (IPv4) fill in the following:
+Open your browser and go to http://#your fixed pihole ip#/admin  Expl: http://192.168.0.254/admin
+Use your password (this was provided in the yml) go to settings in the right menu and select the DNS tab
+In the field Custom 1 (IPv4) fill in the following:
+
 IP of your unbound#5335
+
 Expl. 192.168.0.253#5335
+
 
 And thats it, you can test it and see what magic is happening !
