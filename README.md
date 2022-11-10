@@ -36,17 +36,17 @@ services:
     image: pihole/pihole:latest
     networks:
       pihole:
-        ipv4_address: 192.168.0.254
+        ipv4_address: 192.168.0.254 # You can change this to your wanted PiHole IP
     ports:
       - "53:53/tcp"
       - "53:53/udp"
       - "85:80/tcp"
     environment:
       TZ: 'Europe/Amsterdam'
-      WEBPASSWORD: '### YOUR PASSWORD ###'
+      WEBPASSWORD: '### YOUR PASSWORD ###' # Change this to the password you want
     dns:
       - 127.0.0.1
-      - 1.1.1.1
+      - 1.1.1.1 # I use Cloudflare DNS as secundairy
     volumes:
       - './etc-pihole:/etc/pihole'
       - './etc-dnsmasq.d:/etc/dnsmasq.d'
@@ -59,7 +59,7 @@ services:
     hostname: unbound
     networks:
       pihole:
-        ipv4_address: 192.168.0.253
+        ipv4_address: 192.168.0.253 # You can change this to your wanted unbound IP
     ports:
       - 5335:5335/tcp
       - 5335:5335/udp
@@ -82,8 +82,8 @@ networks:
       options:
         iface: "eth0"
       config:
-        - subnet: 192.168.0.0/24
-          gateway: 192.168.0.1
+        - subnet: 192.168.0.0/24 # Your subnet 
+          gateway: 192.168.0.1   # Your default gateway
 ```
 
 No go to : https://github.com/duckietm/Docker-PiHole-QNAP and copy the compleet folder unbound into : /docker/pihole/ (i use WinSCP)
