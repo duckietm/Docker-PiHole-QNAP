@@ -108,3 +108,24 @@ Expl. 192.168.0.253#5335
 
 
 And thats it, you can test it and see what magic is happening !
+
+## Help
+
+How to remove the setup:
+
+```cmd
+cd /docker/pihole
+docker-compose stop
+docker system prune -a
+```
+Now press 'Y' to remove everting from the docker that is in stopped state, this will also remove the network for the created dockers.
+
+then do
+```cmd
+rm -r /docker/pihole
+```
+
+## backup & restore
+Just backup all that is in /docker/pihole and you can place it on a safe location or on a new QNAP device.
+
+You can also use this on an other device other then QNAP, you only need to fix the network settings.
