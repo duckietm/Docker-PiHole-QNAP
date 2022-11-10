@@ -87,6 +87,7 @@ networks:
 ```
 
 No go to : https://github.com/duckietm/Docker-PiHole-QNAP and copy the compleet folder unbound into : /docker/pihole/ (i use WinSCP)
+
 This has all the defaults for unbound ofcourse feel free to change it to your needs
 
 You can now start the docker:
@@ -96,7 +97,9 @@ docker-compose up -d
 ```
 
 Open your browser and go to http://#your fixed pihole ip#/admin  Expl: http://192.168.0.254/admin
+
 Use your password (this was provided in the yml) go to settings in the right menu and select the DNS tab
+
 In the field Custom 1 (IPv4) fill in the following:
 
 IP of your unbound#5335
