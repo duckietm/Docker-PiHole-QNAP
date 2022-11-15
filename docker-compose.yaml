@@ -40,6 +40,9 @@ services:
       - ./unbound/conf.d/:/usr/local/unbound/conf.d/:rw
       - ./unbound/log.d/:/usr/local/unbound/log.d/:rw
       - ./unbound/zones.d/:/usr/local/unbound/zones.d/:rw
+      - ./unbound/certs.d/:/usr/local/unbound/certs.d/:rw
+      - ./unbound/iana.d/:/usr/local/unbound/iana.d/:rw
+
     restart: unless-stopped
 
 networks:
