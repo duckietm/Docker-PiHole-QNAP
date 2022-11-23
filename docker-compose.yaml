@@ -15,7 +15,7 @@ services:
       TZ: 'Europe/Amsterdam' # Set your timezone here
       WEBPASSWORD: 'Password#900' # Here you can set the webui password for admin
     dns:
-      - 127.0.0.1
+      - 192.168.0.253
       - 1.1.1.1
     volumes:
       - './etc-pihole:/etc/pihole'
